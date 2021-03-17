@@ -5,7 +5,7 @@
                 <v-card elevation="2">
                     <v-card-text>
                         <v-data-table :headers="headers" :items="items" dense>
-
+                            
                         </v-data-table>
                     </v-card-text>
                 </v-card>
