@@ -2,7 +2,7 @@
     <div>
         <v-row>
             <v-col>
-                <v-card elevation="2">
+                <v-card elevation="2" :loading="load">
                     <v-card-text>
                         <v-data-table :headers="headers" :items="items" dense>
                             
@@ -19,6 +19,7 @@ export default {
     name: 'Main',
     data () {
         return {
+            load: true,
             headers: [
                 {
                     text: 'Номер обращения',
