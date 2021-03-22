@@ -2,9 +2,9 @@
     <div>
         <v-row>
             <v-col>
-                <v-card elevation="2">
+                <v-card elevation="2" :loading="load">
                     <v-card-text>
-                        <v-data-table :headers="headers" :items="items" dense>
+                        <v-data-table :headers="headers" :items="items" dense loading>
                             
                         </v-data-table>
                     </v-card-text>
@@ -19,27 +19,9 @@ export default {
     name: 'Main',
     data () {
         return {
+            load: true,
             headers: [
-                {
-                    text: 'Номер обращения',
-                    align: 'start',
-                    value: 'nomdobr',
-                },
-                {
-                    text: 'Категория',
-                    align: 'start',
-                    value: 'cat',
-                },
-                {
-                    text: 'Модератор',
-                    align: 'start',
-                    value: 'moder',
-                },
-                {
-                    text: 'Номер обращения',
-                    align: 'start',
-                    value: 'nomdobr',
-                },
+
             ],
             items: []
         }
