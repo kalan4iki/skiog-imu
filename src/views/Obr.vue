@@ -6,7 +6,7 @@
                     <v-card-title>
                         <v-row>
                             <v-col>
-                                Обращение №<b>DEV</b>
+                                Обращение №<b>DEV</b> | Тип: <b>DEV</b>
                             </v-col>
                             <v-col>
                                 <v-btn>
