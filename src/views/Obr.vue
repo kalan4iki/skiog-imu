@@ -94,11 +94,11 @@
                                     <b>Этапы рассмотрения</b>
                                 </div>
                                 <v-timeline>
-                                    <v-timeline-item>timeline item</v-timeline-item>
+                                    <v-timeline-item>Dev 1</v-timeline-item>
                                     <v-timeline-item class="text-right">
-                                    timeline item
+                                    Dev 2
                                     </v-timeline-item>
-                                    <v-timeline-item>timeline item</v-timeline-item>
+                                    <v-timeline-item>Dev 3</v-timeline-item>
                                 </v-timeline>
                             </v-col>
                         </v-row>
