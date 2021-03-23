@@ -6,7 +6,7 @@
                     <v-card-title>
                         <v-row>
                             <v-col>
-                                Обращение №<b>{{ task.pk }}</b> | Тип: <b>{{ task.template }}</b>
+                                Обращение №<b>{{ task.pk }}</b> | Статус: <b>{{ task.status }}</b>
                             </v-col>
                             <v-col>
                                 <v-btn>
@@ -80,7 +80,7 @@
                                     >
                                         <v-form>
                                             <v-text-field
-                                                v-model="task.template"
+                                                v-model="template"
                                                 label="Тематика"
                                                 readonly
                                             ></v-text-field>
@@ -96,7 +96,7 @@
                                 <div class="d-flex justify-center mb-6">
                                     <b>Этапы рассмотрения</b>
                                 </div>
-                                <div v-if='task.template'>
+                                <div v-if='template'>
                                     <v-timeline>
                                         <v-timeline-item>Dev 1</v-timeline-item>
                                         <v-timeline-item class="text-right">
@@ -112,7 +112,15 @@
                                         type="warning"
                                         outlined
                                     >
-                                        Шаблон не определен
+                                        <v-row align="center">
+                                            <v-col class="grow">
+                                                Этапы недоступны.
+                                                Шаблон не определен.
+                                            </v-col>
+                                            <v-col class="shrink">
+                                                <v-btn color="warning">Определить</v-btn>
+                                            </v-col>
+                                        </v-row>
                                     </v-alert>
                                 </div>
                             </v-col>
@@ -133,10 +141,10 @@ export default {
                 'pk': null,
                 'address': null,
                 'text': null,
-                'template': null,
                 'status': null,
-                'steps': []
-            }
+            },
+            template: null,
+            steps: []
         }
     },
     mounted() {
@@ -145,7 +153,14 @@ export default {
         let self = this;
         this.axios({'url': url}).then(function(response) {
             self.task = response['data']
+            self.template = response['data']['template']
         })
+        if (self.template) {
+            this.axios({'url': 'template/' + self.task['template']}).then(function(response) {
+                self.steps_url = response['data']['steps']
+            })
+        }
+        
     }
 }
 </script>
