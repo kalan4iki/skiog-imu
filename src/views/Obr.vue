@@ -6,7 +6,7 @@
                     <v-card-title>
                         <v-row>
                             <v-col>
-                                Обращение №<b>DEV</b> | Тип: <b>DEV</b>
+                                Обращение №<b>{{ task.pk }}</b> | Тип: <b>{{ task.template }}</b>
                             </v-col>
                             <v-col>
                                 <v-btn>
@@ -33,6 +33,9 @@
                                 <v-list-item>
                                     <v-list-item-title>Редактировать</v-list-item-title>
                                 </v-list-item>
+                                <v-list-item>
+                                    <v-list-item-title>Приостановить</v-list-item-title>
+                                </v-list-item>
                             </v-list>
                         </v-menu>
                     </v-card-title>
@@ -51,7 +54,7 @@
                                     >
                                         <v-form>
                                             <v-text-field
-                                                v-model="task.addres"
+                                                v-model="task.address"
                                                 label="Адрес"
                                                 readonly
                                             ></v-text-field>
@@ -93,13 +96,25 @@
                                 <div class="d-flex justify-center mb-6">
                                     <b>Этапы рассмотрения</b>
                                 </div>
-                                <v-timeline>
-                                    <v-timeline-item>Dev 1</v-timeline-item>
-                                    <v-timeline-item class="text-right">
-                                    Dev 2
-                                    </v-timeline-item>
-                                    <v-timeline-item>Dev 3</v-timeline-item>
-                                </v-timeline>
+                                <div v-if='task.template'>
+                                    <v-timeline>
+                                        <v-timeline-item>Dev 1</v-timeline-item>
+                                        <v-timeline-item class="text-right">
+                                        Dev 2
+                                        </v-timeline-item>
+                                        <v-timeline-item>Dev 3</v-timeline-item>
+                                    </v-timeline>
+                                </div>
+                                <div v-else>
+                                    <v-alert
+                                        dense
+                                        border="left"
+                                        type="warning"
+                                        outlined
+                                    >
+                                        Шаблон не определен
+                                    </v-alert>
+                                </div>
                             </v-col>
                         </v-row>
                     </v-card-text>
@@ -115,11 +130,22 @@ export default {
     data () {
         return {
             task: {
-                'addres': 'dev',
-                'text': 'dev',
-                'template': 'dev'
+                'pk': null,
+                'address': null,
+                'text': null,
+                'template': null,
+                'status': null,
+                'steps': []
             }
         }
+    },
+    mounted() {
+        var pk = this.$route.params['id'];
+        var url = 'tasks/' + pk;
+        let self = this;
+        this.axios({'url': url}).then(function(response) {
+            self.task = response['data']
+        })
     }
 }
 </script>

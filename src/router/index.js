@@ -18,7 +18,7 @@ const routes = [
     component: Archive
   },
   {
-    path: '/obr',
+    path: '/task/:id',
     name: 'Страница обращения',
     component: Obr
   },
