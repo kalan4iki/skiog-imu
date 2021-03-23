@@ -51,7 +51,7 @@
                                     >
                                         <v-form>
                                             <v-text-field
-                                                v-model="obr.addres"
+                                                v-model="task.addres"
                                                 label="Адрес"
                                                 readonly
                                             ></v-text-field>
@@ -64,7 +64,7 @@
                                     >
                                         <v-form>
                                             <v-textarea
-                                                v-model="obr.text"
+                                                v-model="task.text"
                                                 label="Описание"
                                                 readonly
                                             ></v-textarea>
@@ -77,7 +77,7 @@
                                     >
                                         <v-form>
                                             <v-text-field
-                                                v-model="obr.cat"
+                                                v-model="task.template"
                                                 label="Тематика"
                                                 readonly
                                             ></v-text-field>
@@ -114,10 +114,10 @@ export default {
     name: 'Obr',
     data () {
         return {
-            obr: {
+            task: {
                 'addres': 'dev',
                 'text': 'dev',
-                'cat': 'dev'
+                'template': 'dev'
             }
         }
     }
