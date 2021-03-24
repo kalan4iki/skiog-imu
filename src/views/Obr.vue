@@ -2,11 +2,14 @@
     <div>
         <v-row>
             <v-col>
+                <v-btn @click="$router.go(-1)">Назад</v-btn>
+            </v-col>
+            <v-col cols="12" sm="6" md="12">
                 <v-card>
                     <v-card-title>
                         <v-row>
                             <v-col>
-                                Обращение №<b>{{ task.pk }}</b> | Статус: <b>{{ task.status }}</b>
+                                Обращение №<b>{{ task.pk }}</b> | Статус: <b>{{ task.stat }}</b>
                             </v-col>
                             <v-col>
                                 <v-btn>
@@ -80,7 +83,7 @@
                                     >
                                         <v-form>
                                             <v-text-field
-                                                v-model="template"
+                                                v-model="task.temp"
                                                 label="Тематика"
                                                 readonly
                                             ></v-text-field>
@@ -96,13 +99,11 @@
                                 <div class="d-flex justify-center mb-6">
                                     <b>Этапы рассмотрения</b>
                                 </div>
-                                <div v-if='template'>
+                                <div v-if='task.template'>
                                     <v-timeline>
-                                        <v-timeline-item>Dev 1</v-timeline-item>
-                                        <v-timeline-item class="text-right">
-                                        Dev 2
+                                        <v-timeline-item v-for="step in task.steps" :key="step.pk">Этап <b>{{ step.name }}</b>. 
+                                        Ответсвенные: <b v-for="resp in step.resp" :key="resp.pk">{{ resp.user_name }}</b>
                                         </v-timeline-item>
-                                        <v-timeline-item>Dev 3</v-timeline-item>
                                     </v-timeline>
                                 </div>
                                 <div v-else>
@@ -141,10 +142,11 @@ export default {
                 'pk': null,
                 'address': null,
                 'text': null,
-                'status': null,
+                'stat': null,
+                'temp': null,
+                'template': null,
+                'steps': [],
             },
-            template: null,
-            steps: []
         }
     },
     mounted() {
@@ -153,14 +155,7 @@ export default {
         let self = this;
         this.axios({'url': url}).then(function(response) {
             self.task = response['data']
-            self.template = response['data']['template']
         })
-        if (self.template) {
-            this.axios({'url': 'template/' + self.task['template']}).then(function(response) {
-                self.steps_url = response['data']['steps']
-            })
-        }
-        
     }
 }
 </script>
