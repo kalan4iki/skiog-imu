@@ -10,7 +10,7 @@ axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 let config = {
-  method: 'post', // default
+  method: 'get', // default
   baseURL: '/imu/api/',
   timeout: 60 * 1000, // Timeout
   withCredentials: false, // Check cross-site Access-Control
