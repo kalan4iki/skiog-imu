@@ -3,6 +3,12 @@
         <v-row>
             <v-col>
                 <v-card elevation="2" :loading="load">
+                    <v-card-title>
+                        <v-spacer/>
+                        <v-btn>
+                            Создать
+                        </v-btn>
+                    </v-card-title>
                     <v-card-text>
                         <v-data-table :headers="headers" :items="items" dense>
                             <template v-slot:item.pk="{ item }">
@@ -47,7 +53,6 @@ export default {
         items: []
     }),
     mounted() {
-        console.log(this)
         let self = this;
         this.axios({url: 'tasks/'}).then(function(response) {
             console.log(response)
