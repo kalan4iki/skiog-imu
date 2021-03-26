@@ -3,7 +3,7 @@ name: DEPLOY TO STAGING
 on:
   push:
     branches:
-      - production
+      - master
 
 jobs:
   firebase-deploy:
