@@ -47,7 +47,7 @@ export default {
             {
                 text: 'Статус',
                 align: 'start',
-                value: 'status',
+                value: 'stat',
             },
         ],
         items: []
