@@ -1,9 +1,8 @@
 <template>
     <v-dialog
       v-model="dialog"
-      fullscreen
-      hide-overlay
       transition="dialog-bottom-transition"
+      max-width='700'
     >
       <template v-slot:activator="{ on, attrs }">
         <v-list-item v-bind="attrs" v-on="on">
@@ -39,8 +38,8 @@
           subheader
         >
             <v-subheader>Базовые настройки</v-subheader>
-            <v-row>
-              <v-form>
+            <v-form>
+              <v-row>
                 <v-col
                     cols="12"
                     sm="6"
@@ -74,8 +73,8 @@
                     readonly
                   ></v-text-field>
                 </v-col>
-              </v-form>
-            </v-row>
+              </v-row>
+            </v-form>
         </v-list>
       </v-card>
     </v-dialog>

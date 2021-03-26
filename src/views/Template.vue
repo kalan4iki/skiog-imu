@@ -20,28 +20,26 @@ export default ({
             load: true,
             headers: [
                 {
-                    text: 'Номер обращения',
+                    text: 'Номер шаблона',
                     align: 'start',
-                    value: 'nomdobr',
+                    value: 'pk',
                 },
                 {
-                    text: 'Категория',
+                    text: 'Название',
                     align: 'start',
-                    value: 'cat',
-                },
-                {
-                    text: 'Модератор',
-                    align: 'start',
-                    value: 'moder',
-                },
-                {
-                    text: 'Номер обращения',
-                    align: 'start',
-                    value: 'nomdobr',
+                    value: 'text',
                 },
             ],
             items: []
         }
+    },
+    mounted() {
+        let self = this;
+        this.axios({url: 'templates/'}).then(function(response) {
+            console.log(response)
+            self.load = false;
+            self.items = response['data']
+        })
     }
 })
 </script>

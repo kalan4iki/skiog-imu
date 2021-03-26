@@ -8,13 +8,38 @@
                 <v-card>
                     <v-card-title>
                         <v-row>
-                            <v-col>
+                            <v-col cols="12" sm="6" md="8">
                                 Задача №<b>{{ task.pk }}</b> | Статус: <b>{{ task.stat }}</b>
                             </v-col>
-                            <v-col>
-                                <v-btn>
-                                    Фотографии
-                                </v-btn>
+                            <v-col cols="12" sm="6" md="2">
+                                <v-tooltip bottom>
+                                    <template v-slot:activator="{ on, attrs }">
+                                        <v-btn
+                                            color="primary"
+                                            dark
+                                            v-bind="attrs"
+                                            v-on="on"
+                                        >
+                                          Фотографии
+                                        </v-btn>
+                                    </template>
+                                    <span>В разработке</span>
+                                </v-tooltip>
+                            </v-col>
+                            <v-col cols="12" sm="6" md="2">
+                                <v-tooltip bottom>
+                                    <template v-slot:activator="{ on, attrs }">
+                                        <v-btn
+                                            color="primary"
+                                            dark
+                                            v-bind="attrs"
+                                            v-on="on"
+                                        >
+                                          Комментарии
+                                        </v-btn>
+                                    </template>
+                                    <span>В разработке</span>
+                                </v-tooltip>
                             </v-col>
                         </v-row>
                         <v-spacer></v-spacer>
@@ -120,7 +145,9 @@
                                                 </v-card-text>
                                                 <v-divider/>
                                                 <v-card-actions>
-                                                    Ответсвенные: <b v-for="resp in step.resp" :key="resp.pk">{{ resp.user_name }}</b>
+                                                    Ответсвенные: <b v-for="resp in step.resp" :key="resp.pk">{{ resp.user_name }}</b> 
+                                                    <v-spacer/>
+                                                    <v-btn>{{step.types.name_but}}</v-btn>
                                                 </v-card-actions>
                                             </v-card>
                                         </v-timeline-item>
