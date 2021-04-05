@@ -4,13 +4,13 @@
       max-width="600px"
     >
       <template v-slot:activator="{ on, attrs }">
-        <v-list-item v-bind="attrs" v-on="on">
-            <v-list-item-title>Редактировать</v-list-item-title>
-        </v-list-item>
+        <v-btn v-bind="attrs" v-on="on">
+            Создать
+        </v-btn>
       </template>
       <v-card>
         <v-card-title>
-          <span class="headline">Редактирование</span>
+          <span class="headline">Создание задачи</span>
         </v-card-title>
         <v-card-text>
           <v-container>
@@ -22,14 +22,14 @@
                   md="12"
                 >
                   <v-text-field
-                    v-model="task.address"
+                    v-model='task.address'
                     label="Адрес"
                     required
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12">
                   <v-textarea
-                    v-model="task.text"
+                    v-model='task.text'
                     label="Описание"
                     required
                     rows='2'
@@ -41,10 +41,10 @@
                   md="12"
                 >
                   <v-select
-                    v-model="task.temp"
+                    v-model='task.template'
                     :items="temp_items"
+                    label="Шаблон"
                     item-value='pk'
-                    label="Тематика"
                     required
                   ></v-select>
                 </v-col>
@@ -64,9 +64,9 @@
           <v-btn
             color="blue darken-1"
             text
-            @click="dialog = false"
+            @click="save_task"
           >
-            Сохранить
+            Создать
           </v-btn>
         </v-card-actions>
       </v-card>
@@ -74,26 +74,26 @@
 </template>
 
 <script>
-export default({
-    name: 'Task_edit',
-    props: ['task'],
-    data () {
-        return {
-            dialog: false,
-            temp_items: []
-        }
-    },
-    methods: {
-        test: function () {
-            console.log(this.task)
-        }
-    },
-    mounted() {
-      let self = this;
-      this.axios({url: 'templates/'}).then(function(response) {
-          console.log(response)
-          self.temp_items = response['data']
-      })
-    },
-})
+export default {
+  name: 'Task_add',
+  data () {
+      return {
+          dialog: false,
+          temp_items: [],
+          task: {'address': '', 'text': '', 'template': []}
+      }
+  },
+  mounted() {
+    let self = this;
+    this.axios({url: 'templates/'}).then(function(response) {
+        console.log(response)
+        self.temp_items = response['data']
+    })
+  },
+  methods: {
+    save_task: function () {
+      console.log(this.task)
+    }
+  }
+}
 </script>

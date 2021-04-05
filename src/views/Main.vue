@@ -5,9 +5,7 @@
                 <v-card elevation="2" :loading="load">
                     <v-card-title>
                         <v-spacer/>
-                        <v-btn>
-                            Создать
-                        </v-btn>
+                        <Task_add/>
                     </v-card-title>
                     <v-card-text>
                         <v-data-table :headers="headers" :items="items" dense>
@@ -23,9 +21,10 @@
 </template>
 
 <script>
-
+import Task_add from './dialogs/Task_add.vue';
 export default {
     name: 'Main',
+    components: { Task_add },
     data: () => ({
         load: true,
         headers: [
