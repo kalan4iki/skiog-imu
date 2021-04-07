@@ -10,7 +10,7 @@
       </template>
       <v-card>
         <v-card-title>
-          <span class="headline">Согласование</span>
+          <span class="headline">Исполнение</span>
         </v-card-title>
         <v-card-text>
           <v-container>
@@ -41,6 +41,12 @@
                     required
                   ></v-select>
                 </v-col>
+                <v-col>
+                  <v-file-input
+                    multiple
+                    label="File input"
+                  ></v-file-input>
+                </v-col>
               </v-row>
             </v-form>
           </v-container>
@@ -57,7 +63,7 @@
           <v-btn
             color="blue darken-1"
             text
-            @click="sogl"
+            @click="execut"
           >
             Отправить
           </v-btn>
@@ -68,7 +74,7 @@
 
 <script>
 export default {
-  name: 'Step_sogl',
+  name: 'Step_exec',
   props: ['name', 'task', 'step'],
   data () {
       return {
@@ -81,14 +87,14 @@ export default {
   mounted() {
     let self = this;
     const params = new URLSearchParams();
-    params.append('type', 'sogl');
+    params.append('type', 'execution');
     this.axios({url: 'step/results/', params: params}).then(function(response) {
         console.log(response)
         self.res_items = response['data']
     })
   },
   methods: {
-    sogl: function () {
+    execut: function () {
       let self = this;
       const params = new URLSearchParams();
       params.append('task_pk', self.task.pk);

@@ -8,7 +8,7 @@
           {{name}}
       </v-btn>
     </template>
-    <v-card>
+    <v-card :loading="load">
       <v-card-title>
         <span class="headline">Изображения по задачи</span>
       </v-card-title>
@@ -56,6 +56,7 @@ export default {
   data () {
       return {
           dialog: false,
+          load: true,
           temp_items: [],
           template: [],
           images: []

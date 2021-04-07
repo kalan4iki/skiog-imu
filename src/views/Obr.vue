@@ -159,7 +159,10 @@
                                                     <Step_moder v-bind:name='step.types.name_but' v-bind:task="task" v-bind:step='step'> </Step_moder>
                                                   </div>
                                                   <div v-else-if='step.types.text == "sogl"'>
-                                                    <Step_sogl v-bind:name='step.types.name_but' v-bind:task="task"> </Step_sogl>
+                                                    <Step_sogl v-bind:name='step.types.name_but' v-bind:task="task" v-bind:step='step'> </Step_sogl>
+                                                  </div>
+                                                  <div v-else-if='step.types.text == "execution"'>
+                                                    <Step_exec v-bind:name='step.types.name_but' v-bind:task="task" v-bind:step='step'> </Step_exec>
                                                   </div>
                                               </v-card-actions>
                                           </v-card>
@@ -237,10 +240,11 @@
 import Task_edit from './dialogs/Task_edit.vue';
 import Step_moder from './dialogs/Step_moder.vue';
 import Step_sogl from './dialogs/Step_sogl.vue';
+import Step_exec from './dialogs/Step_exec.vue';
 import Task_photo from './dialogs/Task_photo.vue';
 
 export default {
-    components: { Task_edit, Step_moder, Step_sogl, Task_photo },
+    components: { Task_edit, Step_moder, Step_sogl, Task_photo, Step_exec },
     name: 'Obr',
     data () {
         return {
